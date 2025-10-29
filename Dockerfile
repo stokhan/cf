@@ -22,7 +22,7 @@ RUN npx playwright install chrome
 
 COPY . .
 
-EXPOSE 10000
+EXPOSE 8080
 
 ENV DISPLAY=:99
 ENV NODE_ENV=production

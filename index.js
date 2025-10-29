@@ -4,7 +4,7 @@ const fs = require("fs")
 const path = require("path")
 
 const app = express()
-const port = process.env.PORT || 10000
+const port = process.env.PORT || 8080
 const authToken = process.env.authToken || null
 
 global.browserLimit = Number(process.env.browserLimit) || 20
