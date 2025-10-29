@@ -6,9 +6,7 @@ async function turnstile({ domain, proxy, siteKey }, page) {
   let isResolved = false;
 
   const cl = setTimeout(async () => {
-    if (!isResolved) {
-      throw new Error("Timeout Error");
-    }
+    if (!isResolved) throw new Error("Timeout Error");
   }, timeout);
 
   try {
@@ -58,7 +56,6 @@ async function turnstile({ domain, proxy, siteKey }, page) {
     });
 
     await page.goto(domain, { waitUntil: "domcontentloaded" });
-
     await page.waitForSelector('[name="cf-response"]', { timeout });
 
     const token = await page.evaluate(() => {
@@ -71,7 +68,6 @@ async function turnstile({ domain, proxy, siteKey }, page) {
 
     isResolved = true;
     clearTimeout(cl);
-
     if (!token || token.length < 10) throw new Error("Failed to get token");
     return token;
 
